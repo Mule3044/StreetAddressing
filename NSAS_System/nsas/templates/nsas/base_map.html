@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Viberr{% endblock %}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'nsas/css/bootstrap.min.css' %}">
+     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'nsas/css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'nsas/css/jquery-ui.css' %}"/>
+    <script src="{% static 'nsas/js/jquery.min.js' %}"></script>
+     <script src="{% static 'nsas/js/bootstrap.min.js' %} "></script>
+     <script src="{% static 'nsas/js/main.js' %}"></script>
+     <link rel="stylesheet" href="{% static 'nsas/css/ol.css' %}" type="text/css">
+   <link rel="stylesheet" href="{% static 'nsas/css/ol-ext.css' %}" type="text/css">
+
+    <script src="{% static 'nsas/js/jquery-1.12.4.js' %} "></script>
+     <script src="{% static 'nsas/js/jquery-ui.js' %} "></script>
+     <script src="{% static 'nsas/js/ol.js' %}" type="text/javascript"></script>
+     <script src="{% static 'nsas/js/ol-ext.js' %}" type="text/javascript"></script>
+<script>
+ $(function () {
+     $(".datefield" ).datepicker({
+        dateFormat : 'dd/mm/yy',
+        defaultDate: new Date()
+    });
+            $(".datefield").datepicker('setDate',new Date());
+
+     $(".datefield").datepicker();
+        });
+</script>
+{% block header %}
+{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'nsas:RoutingList' %}">NSAS</a>
+
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'nsas:RoutingList' %}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;Routing</a></li>
+
+            </ul>
+            <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'nsas:RoutingList' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+        </div>
+
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>
